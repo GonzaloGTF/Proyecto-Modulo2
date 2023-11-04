@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    </style>
+
+    <!-- <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+    </style> -->
+
+    <link rel="icon" type="image/svg+xml"
+        href="https://mecanizadosdelvinalopo.com/wp-content/uploads/2017/06/medida-mecanizados-dise%C3%B1o-fabricacion-maquinaria-industrial-alicante-capacidades-mecanizados-vinalopo.png">
+    <title>Empresas Mecanizado</title>
+</head>
+
+<body>
+    <header>
+        <h1 id="initialTitle">ORGANIZA TU EMPRESA DE MECANIZADO</h1>
+    </header>
+
+    <main>
+        <div id="divLogReg">
+            <div id="divFormLogReg">
+                <h2 id="titleLogReg">Iniciar sesión</h2>
+                <form id=formLogReg action="http://localhost:3000/api/auth/login" method="post">
+                    <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" required>
+                    <input type="email" id="email" name="email" placeholder="Email" style="display: none">
+                    <input type="password" id="pass" name="password" placeholder="Contraseña" required>
+
+                    <button id="buttonLogReg" type="submit">Iniciar sesión</button>
+                </form>
+                <p id="resultLogReg"> </p>
+            </div>
+            <hr>
+            <button id="buttonChange">Crear nueva cuenta</button>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script type="module" src="script.mjs"></script>
+</body>
+
+
+
+</html>
