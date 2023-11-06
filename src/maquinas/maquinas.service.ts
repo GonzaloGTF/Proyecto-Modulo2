@@ -34,4 +34,10 @@ export class MaquinasService {
             throw e
         }
     }
+
+    //eliminar maquina
+    async deleteMaquina(maquinaId: string): Promise<any> {
+
+        return this.maquinaModel.deleteOne({ _id: maquinaId })
+    }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { MaquinasService } from './maquinas.service';
 
 @Controller('maquinas')
@@ -17,5 +17,12 @@ export class MaquinasController {
         await this.maquinasService.addNewMachine(machine);
 
         return { message: `Maquina añadida` };
+    }
+
+    //Eliminar maquina
+    @Delete("eliminar/:realId")
+    async deleteMaquina(@Param("realId") maquinaId: string): Promise<any> {
+        await this.maquinasService.deleteMaquina(maquinaId)
+        return "Maquina eliminada"
     }
 }

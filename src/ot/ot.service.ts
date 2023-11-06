@@ -41,7 +41,29 @@ export class OtService {
     //Edit estado ot
     async estadoOT(id: string, estado: string): Promise<any> {
         await this.otModel.updateOne({ _id: id }, { $set: { estado: estado } })
-        console.log(estado)
-        console.log(id)
     }
+
+    //Search de ot
+    async searchOt(idEmpresa, ot): Promise<OtModule[]> {
+        return await this.otModel.find({ idEmpresa: idEmpresa, ot: ot });
+    }
+
+
+
+    // //Edit tiempoTotal ot
+    // async tiempoOT(id: string, tiempo: number): Promise<any> {
+    //     console.log(tiempo)
+    //     console.log(id)
+
+    //     //const numTiempo = parseInt(tiempo)
+
+    //     const ot = await this.otModel.findOne({ _id: "6545bdbef9a3f0530d8a594d" }) as OtDto
+
+    //     let tiempoTotal = ot.tiempoTotal + tiempo;
+    //     console.log(ot.tiempoTotal)
+    //     console.log(tiempoTotal)
+
+    //     await this.otModel.updateOne({ _id: "6545bdbef9a3f0530d8a594d" }, { $set: { tiempoTotal: tiempoTotal } })
+
+    // }
 }

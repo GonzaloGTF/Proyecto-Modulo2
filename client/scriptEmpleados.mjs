@@ -21,7 +21,8 @@ const getEmpleados = function () {
             thApellido.textContent = "Apellido"
             thTipoTrabajo.textContent = "Tipo de trabajo"
             thCategoria.textContent = "Categoria"
-            buttonEliminar.textContent = "🗑"
+            buttonEliminar.textContent = "Eliminar"
+            buttonEliminar.classList = "buttonDelete"
 
             thEliminar.appendChild(buttonEliminar)
             trEmpleadosTitles.append(thNombre, thApellido, thTipoTrabajo, thCategoria, thEliminar)
@@ -33,6 +34,7 @@ const getEmpleados = function () {
                 const tdApellido = create("td")
                 const tdTipoTrabajo = create("td")
                 const tdCategoria = create("td")
+                const tdEliminar = create("td")
                 const tdCheckEliminar = create("checkbox")
                 const checkbox = create("input");
 
@@ -43,9 +45,11 @@ const getEmpleados = function () {
 
                 checkbox.type = "checkbox";
                 checkbox.id = i
+                checkbox.classList = "inputEliminar"
 
                 tdCheckEliminar.appendChild(checkbox);
-                trEmpleados.append(tdNombre, tdApellido, tdTipoTrabajo, tdCategoria, tdCheckEliminar, tdCheckEliminar)
+                tdEliminar.appendChild(tdCheckEliminar)
+                trEmpleados.append(tdNombre, tdApellido, tdTipoTrabajo, tdCategoria, tdEliminar)
                 tablaEmpleados.appendChild(trEmpleados)
             });
 
@@ -61,6 +65,7 @@ const getEmpleados = function () {
             const buttonNewEmpleado = create("button")
             buttonNewEmpleado.textContent = "Contratar nuevo empleado"
             buttonNewEmpleado.id = "newEmpleado"
+            buttonNewEmpleado.classList = "addNew"
             getId("divAddNew").innerHTML = ""
             getId("divAddNew").appendChild(buttonNewEmpleado)
 
@@ -90,6 +95,8 @@ const newEmpleado = () => {
     const error = create("p")
 
     selectCategoria.name = "categoria"
+    selectCategoria.classList = "selectAddNew"
+
     optionInicial.value = ""
     optionInicial.selected = true
     optionInicial.disabled = true
@@ -97,7 +104,10 @@ const newEmpleado = () => {
     optionInicial.textContent = "Categoría profesional"
 
     h2NewEmpleado.textContent = "Contratar nuevo trabajador"
+    h2NewEmpleado.classList = "addNewTitle"
+
     formNewEmpleado.id = "formNewEmpleado"
+    formNewEmpleado.classList = "formNew"
 
     inputNombre.type = "text"
     inputNombre.name = "nombre"
@@ -117,7 +127,9 @@ const newEmpleado = () => {
     error.id = "error"
 
     buttonNewEmpleado.textContent = "Contratar"
+    buttonNewEmpleado.classList = "buttonAddNew"
     buttonNewEmpleado.id = "buttonNewEmpleado"
+
     selectCategoria.append(optionInicial, optionJefe, optionOficial1, optionOficual2, optionOficial3)
     formNewEmpleado.append(inputNombre, inputApellido, inputTipoTrabajo, selectCategoria, buttonNewEmpleado, error)
 
@@ -145,7 +157,6 @@ const newEmpleado = () => {
         fetch("http://localhost:3000/api/empleados/newEmployee", data)
             .then(response => response.json())
             .then(response => {
-                console.log(response)
                 if (response?.statusCode) {
                     getId("error").textContent = response.message
                 } else {
@@ -174,7 +185,7 @@ let despedirEmpleado = (response) => {
 
     idEliminate.forEach(num => {
         const realId = response[num]._id
-        console.log(realId)
+
         let data = {
             method: 'DELETE',
             headers: {

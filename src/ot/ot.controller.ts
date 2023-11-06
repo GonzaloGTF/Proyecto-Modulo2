@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { OtService } from './ot.service';
 
 @Controller('ot')
@@ -22,12 +22,24 @@ export class OtController {
     //Modificar estado
     @Put("/estado/:id/:estado")
     estadoOT(@Param("id") id: string, @Param("estado") estado: string): any {
-        console.log(id)
-        console.log(estado)
         this.otService.estadoOT(id, estado)
 
         return ""
     }
 
+    //Search de ot
+    @Get(":idEmpresa/:ot")
+    searchOt(@Param("idEmpresa") idEmpresa: string, @Param("ot") ot: string): any {
+        return this.otService.searchOt(idEmpresa, ot)
+    }
 
+
+
+    //Modificar tiempo
+    // @Put("tiempo/:id/:tiempo")
+    // tiempoOT(@Param("id") id: string, @Param("tiempo") tiempo: number): any {
+    //     this.otService.tiempoOT(id, tiempo)
+
+    //     return ""
+    // }
 }

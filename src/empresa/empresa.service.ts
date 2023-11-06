@@ -15,7 +15,7 @@ export class EmpresaService {
       const { empresa, password, email } = user;
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      console.log(empresa, hashedPassword, email)
+
       if (!empresa || !hashedPassword || !email) {
         throw new BadRequestException("Rellene todos los datos");
       }

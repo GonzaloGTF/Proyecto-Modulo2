@@ -11,6 +11,8 @@ const formLogReg = getId("formLogReg");
 const buttonLogReg = getId("buttonLogReg");
 const resultLogReg = getId("resultLogReg");
 const email = getId("email")
+const or = getId("or")
+const orText = getId("orText")
 const registerURL = "http://localhost:3000/api/empresa/register"
 const logInURL = "http://localhost:3000/api/auth/login"
 let idEmpresa
@@ -22,7 +24,10 @@ const logInChange = function () {
     buttonLogReg.textContent = "Iniciar sesión"
     buttonChange.textContent = "Crear nueva cuenta"
     resultLogReg.textContent = ""
+    orText.textContent = "O bien"
     email.style.display = "none";
+
+
 }
 
 //Cambio a register
@@ -30,9 +35,12 @@ const registerChange = function () {
     titleLogReg.textContent = "Crear nueva cuenta"
     formLogReg.action = registerURL
     buttonLogReg.textContent = "Registrarse"
-    buttonChange.textContent = "¿Ya tienes cuenta? Inicia sesión"
+    buttonChange.textContent = "Inicia sesión"
     resultLogReg.textContent = ""
+    orText.textContent = "¿Ya tienes cuenta?"
     email.style.display = "block";
+
+
 }
 
 //Cambiar LogIn - Register
@@ -98,7 +106,7 @@ const mainHtmlLogIn = (response) => {
     divCollection.append(collectionOt, collectionEmpleados, collectionMaquinas)
 
     document.querySelector("main").innerHTML = ""
-    document.querySelector("main").append(divCollection, divAct, divAddNew)
+    document.querySelector("main").append(divCollection, divAddNew, divAct,)
     const desSelect = document.querySelector(".select")
 
     const replaceClass = function () {
@@ -155,7 +163,6 @@ formLogReg.addEventListener("submit", function (event) {
 
                 // }
                 if (response?.statusCode) {
-                    console.log(response)
                     registerChange()
                     resultLogReg.textContent = response.message
                 } else {
