@@ -178,12 +178,14 @@ formLogReg.addEventListener("submit", function (event) {
         fetch(logInURL, data)
             .then(response => response.json())
             .then(response => {
-                if (response._id) {
-                    idEmpresa = response._id
-
+                console.log(response)
+                localStorage.setItem("token", response.access_token)
+                if (response.user) {
+                    idEmpresa = response.user._id
+                    console.log(response)
                     //Añadir elementos al HTML
-                    headerHtmlLogIn(response)
-                    mainHtmlLogIn(response)
+                    headerHtmlLogIn(response.user)
+                    mainHtmlLogIn(response.user)
                 }
 
                 if (response?.statusCode == 401) {

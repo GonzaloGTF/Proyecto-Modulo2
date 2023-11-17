@@ -38,8 +38,8 @@ export class EmpresaService {
 
   //Find empresa (para login)
   async findOne(empresa: string): Promise<any | undefined> {
-    let user = await this.empresaModel.findOne({ empresa: empresa });
-
+    let user = await this.empresaModel.findOne({ empresa: empresa }).lean();
+    //lean es para que mongo te traiga solo lo que pides, no mas
     return user;
   }
 }

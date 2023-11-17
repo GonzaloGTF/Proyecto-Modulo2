@@ -2,7 +2,11 @@ import { idEmpresa, create, getId } from "./script.mjs";
 
 //Pedir lista Empleados
 const getEmpleados = function () {
-    fetch(`http://localhost:3000/api/empleados/${idEmpresa}`)
+    fetch(`http://localhost:3000/api/empleados/${idEmpresa}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    })
         .then(response => response.json())
         .then(response => {
 
